@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-product',
@@ -13,4 +13,14 @@ export class ProductComponent {
   @Input({required: true}) img: string = ''; // Se inicializa con un valor por defecto y se pide que sea requerido
   @Input({required: true}) title: string = '';
   @Input({required: true}) price: number = 0;
+
+  // se debe crear un evento para que el hijo pueda comunicarse con el padre
+  @Output() addToCart = new EventEmitter();
+
+  // al hacer click en el botón se ejecuta este método que emite un evento al padre
+  addToCartHandler() {
+    console.log('Estamos en el hijo');
+
+    this.addToCart.emit(`Hola, este es un mensaje desde el producto: ${this.title}`);
+  }
 }

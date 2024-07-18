@@ -9,5 +9,8 @@ import { ProductComponent } from '../../components/product/product.component';
   styleUrl: './list.component.css'
 })
 export class ListComponent {
-
+  // desde el padre se crea un metodo que recibe un evento del hijo
+  fromChild(event: string) {
+    console.log('Estamos en el padre:', event);
+  }
 }
