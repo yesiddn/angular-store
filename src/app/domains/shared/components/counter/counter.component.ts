@@ -16,4 +16,10 @@ export class CounterComponent {
     console.log('Constructor');
     console.log('-'.repeat(10));
   }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log('ngOnChanges');
+    console.log(changes);
+    console.log('-'.repeat(10));
+  }
 }
