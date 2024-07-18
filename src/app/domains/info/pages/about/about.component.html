@@ -1,9 +1,11 @@
 <p>
-  <input type="number" [value]="duration()" (change)="changeDuration($event)">
+  <input type="number" [value]="duration()" (change)="changeDuration($event)" />
 </p>
 <p>
-  <input type="text" [value]="message()" (change)="changeMessage($event)">
+  <input type="text" [value]="message()" (change)="changeMessage($event)" />
 </p>
 <p>
-  <app-counter [duration]="duration()" [message]="message()" />
+  <!-- Después de ser destruido se vuelve a crear un nuevo elemento ejecutando todo el ciclo de vida -->
+  <app-counter [duration]="duration()" [message]="message()" *ngIf="duration() > 0" />
 </p>
+<p>This is a life cycle example. Change 500 to 0</p>
