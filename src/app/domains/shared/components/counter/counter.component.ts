@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input, signal, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-counter',
@@ -10,6 +10,10 @@ import { Component, Input, SimpleChanges } from '@angular/core';
 export class CounterComponent {
   @Input({ required: true }) duration = 0; // el motor de TypeScript infiere el tipo de dato de forma implícita
   @Input({ required: true }) message: string = '';
+  counter = signal(0);
+  
+  // se crea una referencia para el setInterval
+  counterRef: number | undefined;
 
   // el constructor se usa para crear valores por defecto por lo que no debe ser async
   constructor() {
@@ -34,6 +38,14 @@ export class CounterComponent {
     console.log('duration ->', this.duration);
     console.log('message ->', this.message);
     console.log('-'.repeat(10));
+
+    // el setInterval se ejecuta en el event loop y por ende al destruir el componente no se detiene porque nadie lo detiene -> puede ocurrir con un setInterval, socker de realtime, etc., lo que puede causar memory leaks
+    // para evitar memory leaks se debe crear una referencia al setInterval y limpiarla en el ngOnDestroy con el metodo que nos proporciona el browser window.clearInterval(ref)
+    this.counterRef = window.setInterval(() => {
+      console.log('run interval');
+
+      this.counter.update(prevState => prevState + 1);
+    }, 1000);
   }
 
   ngAfterViewInit() {
@@ -44,6 +56,8 @@ export class CounterComponent {
   ngOnDestroy() {
     console.log('ngOnDestroy');
     console.log('-'.repeat(10));
+
+    window.clearInterval(this.counterRef);
   }
 
   doSomething() {
