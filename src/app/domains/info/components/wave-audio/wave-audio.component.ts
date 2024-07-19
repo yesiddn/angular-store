@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, signal, ViewChild } from '@angular/core';
 import WaveSurfer from 'wavesurfer.js';
 
 @Component({
@@ -12,12 +12,20 @@ export class WaveAudioComponent {
   @Input({ required: true }) audioUrl: string = ''; // cuando genera error por no inicializar la variable se puede evitar con el operador de asignación asi: audioUrl!: string;
 
   // es la forma segura de acceder a un elemento del DOM en Angular -> es como el document.getElementById('waveform') de JavaScript
-  @ViewChild('waveform') waveContainer!: ElementRef;
+  @ViewChild('wave') waveContainer!: ElementRef;
+  private ws!: WaveSurfer;
+  isPlaying = signal(false);
 
   ngAfterViewInit() {
-    WaveSurfer.create({
+    this.ws = WaveSurfer.create({
       url: this.audioUrl,
-      container: this.waveContainer.nativeElement,
+      container: this.waveContainer.nativeElement
     });
+    this.ws.on('play', () => this.isPlaying.set(true));
+    this.ws.on('pause', () => this.isPlaying.set(false));
+  }
+
+  playPause() {
+    this.ws.playPause();
   }
 }
