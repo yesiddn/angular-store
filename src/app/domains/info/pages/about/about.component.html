@@ -1,11 +1,29 @@
-<p>
-  <input type="number" [value]="duration()" (change)="changeDuration($event)" />
-</p>
-<p>
-  <input type="text" [value]="message()" (change)="changeMessage($event)" />
-</p>
-<p>
-  <!-- Después de ser destruido se vuelve a crear un nuevo elemento ejecutando todo el ciclo de vida -->
-  <app-counter [duration]="duration()" [message]="message()" *ngIf="duration() > 0" />
-</p>
-<p>This is a life cycle example. Change 500 to 0</p>
+<div class="p-10">
+  <p>
+    <input type="number" [value]="duration()" (change)="changeDuration($event)" />
+  </p>
+  <p>
+    <input type="text" [value]="message()" (change)="changeMessage($event)" />
+  </p>
+  <p>
+    <!-- Después de ser destruido se vuelve a crear un nuevo elemento ejecutando todo el ciclo de vida -->
+    <app-counter [duration]="duration()" [message]="message()" *ngIf="duration() > 0" />
+  </p>
+  <p>This is a life cycle example. Change 500 to 0</p>
+</div>
+<hr>
+
+<div class="p-10">
+  <h1 class="text-lg font-bold">About</h1>
+  <p class="text-md">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat nisi, saepe accusantium quis porro quae vero nesciunt expedita corrupti aspernatur, deserunt amet optio nihil nam ipsam unde aperiam consequatur maiores.
+  </p>
+
+  <p class="text-md">
+    Número de visitas: <app-counter [duration]="duration()" [message]="message()" *ngIf="duration() > 0" />
+  </p>
+
+  <div>
+    <app-wave-audio audioUrl="audio.mp3" />
+  </div>
+</div>
