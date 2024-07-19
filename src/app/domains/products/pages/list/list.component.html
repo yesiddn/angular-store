@@ -1,7 +1,12 @@
 <div class="grid grid-cols-3 gap-4 m-4">
   <!-- <app-product>Si no tiene contenido se puede poner como con la etiqueta img o input</app-product> -->
-  <app-product title="Producto 1" [price]="12" img="https://picsum.photos/640/640?r=121" (addToCart)="fromChild($event)" />
+  <!-- <app-product title="Producto 1" [price]="12" img="https://picsum.photos/640/640?r=121" (addToCart)="fromChild($event)" /> -->
   <!-- Se llama al generador del evento para que el metodo del padre se ejecute y reciba el evento -->
-  <app-product title="Producto 2" [price]="22" img="https://picsum.photos/640/640?r=122" (addToCart)="fromChild($event)" />
-  <app-product title="Producto 3" [price]="32" img="https://picsum.photos/640/640?r=123" (addToCart)="fromChild($event)" />
+  <!-- <app-product title="Producto 2" [price]="22" img="https://picsum.photos/640/640?r=122" (addToCart)="fromChild($event)" />
+  <app-product title="Producto 3" [price]="32" img="https://picsum.photos/640/640?r=123" (addToCart)="fromChild($event)" /> -->
+
+  <!-- de esta forma simplemente recibimos una propiedada que contiene todo lo que se requiere para el componente -->
+  <app-product *ngFor="let product of products()"
+  [product]="product"
+  (addToCart)="fromChild($event)" />
 </div>
