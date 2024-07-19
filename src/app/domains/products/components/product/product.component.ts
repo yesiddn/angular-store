@@ -22,8 +22,9 @@ export class ProductComponent {
 
   // al hacer click en el botón se ejecuta este método que emite un evento al padre
   addToCartHandler() {
-    console.log('Estamos en el hijo');
+    // console.log('Estamos en el hijo');
 
-    this.addToCart.emit(`Hola, este es un mensaje desde el producto: ${this.product.title}`);
+    // this.addToCart.emit(`Hola, este es un mensaje desde el producto: ${this.product.title}`);
+    this.addToCart.emit(this.product);
   }
 }
