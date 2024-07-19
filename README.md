@@ -54,4 +54,12 @@ propetyChanged: SimpleChange {
 ## Prop drilling o input drilling
 
 El Prop Drilling es una paso del desarrollo que ocurre cuando necesitamos obtener datos que están en varias capas en el árbol de componentes.
-Por ejemplo, separan el [Cart Sidebar](./src/app/domains/shared/components/header/header.component.html) del [Header](./src/app/domains/shared/components/cart-sidebar/cart-sidebar.component.html), generando asi 3 niveles con el [Product List](./src/app/domains/products/pages/list/list.component.html). La solución a este problema es implementar un Store o suscripción a un signal para que los componentes puedan obtener los datos que necesitan sin tener que pasar por todos los componentes.
+Por ejemplo, separan el [Cart Sidebar](./src/app/domains/shared/components/header/header.component.html) del [Header](./src/app/domains/shared/components/cart-sidebar/cart-sidebar.component.html), generando asi 3 niveles con el [Product List](./src/app/domains/products/pages/list/list.component.html). La solución a este problema es implementar un Store o suscripción a un servicio para que los componentes puedan obtener los datos que necesitan sin tener que pasar por todos los componentes.
+
+### Create a sevice
+
+```bash
+ng generate service domains/shared/services/cart
+```
+
+Los servicios son encargados de manejar datos y lógica de negocio. Generalmente se usan para hacer peticiones HTTP.

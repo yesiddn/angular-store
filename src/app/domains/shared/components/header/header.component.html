@@ -19,7 +19,7 @@
     </div>
     <div class="flex items-center">
       <button class="p-2 border rouded relative" (click)="toogleSideMenu()">
-        <div class="absolute -top-3 -left-3 rounded h-5 w-5 bg-black text-white text-xs">{{ cart.length }}</div>
+        <div class="absolute -top-3 -left-3 rounded h-5 w-5 bg-black text-white text-xs">{{ cart().length }}</div>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
           class="w-6 h-6">
           <path stroke-linecap="round" stroke-linejoin="round"
@@ -45,7 +45,7 @@
   <p>Total: {{ total() | currency }}</p>
 
   <div>
-    <div *ngFor="let product of cart">
+    <div *ngFor="let product of cart()">
       <div class="flex items-center space-x-4 mt-4">
         <img [src]="product.image" alt="Product Image" class="w-16 h-16 object-cover rounded-lg">
         <div>
