@@ -63,3 +63,22 @@ ng generate service domains/shared/services/cart
 ```
 
 Los servicios son encargados de manejar datos y lógica de negocio. Generalmente se usan para hacer peticiones HTTP.
+
+## Pipes
+
+Los pipes son funciones que se usan para transformar datos. Angular tiene varios pipes integrados como el DatePipe, UpperCasePipe, LowerCasePipe, etc. También se pueden crear pipes personalizados.
+Generalmente se usan para transformar datos en la vista usando el pipe operator "|" después de la variable y antes del pipe.
+
+```html
+<p>{{ product.title | uppercase }}</p>
+<p>{{ product.price | currency }}</p>
+<p>{{ product.price | currency:'$' }}</p>
+<!-- Precicion decimal de 0 -->
+<p>{{ product.price | currency:'$':'symbol':'1.0' }}</p>
+<!-- Precicion decimal de 3 -->
+<p>{{ product.price | currency:'$':'symbol':'1.3' }}</p>
+<!-- Pipe de fecha -->
+<p>{{ product.date | date:'short' }}</p>
+```
+
+Para saber más sobre los pipes integrados de Angular, visita la [documentación oficial](https://angular.io/api?type=pipe).

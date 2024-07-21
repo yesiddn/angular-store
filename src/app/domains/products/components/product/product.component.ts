@@ -1,10 +1,11 @@
 import { Component, EventEmitter, input, Input, Output } from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
 import { Product } from '../../../shared/models/product.mode';
 
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [],
+  imports: [CurrencyPipe],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
