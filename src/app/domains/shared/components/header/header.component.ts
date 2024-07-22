@@ -2,11 +2,12 @@ import { Component, inject, Input, signal, SimpleChanges } from '@angular/core';
 import { Product } from '../../models/product.mode';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../services/cart.service';
+import { RouterLinkWithHref } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLinkWithHref],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
@@ -15,7 +16,7 @@ export class HeaderComponent {
   // @Input({ required: true }) cart: Product[] = []; // ya no es necesario el input porque se usarán los servicios
   private cartService = inject(CartService);
   cart = this.cartService.cart;
-  
+
   // total = signal(0);
   total = this.cartService.total;
 
