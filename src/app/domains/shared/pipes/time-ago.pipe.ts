@@ -1,4 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { formatDistance } from 'date-fns';
+import { formatDistanceToNow } from 'date-fns';
 
 @Pipe({
   name: 'timeAgo',
@@ -6,6 +8,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TimeAgoPipe implements PipeTransform {
 
+  /** Mi solución
   transform(value: string): string {
     const date = new Date(value);
     const now = new Date();
@@ -46,6 +49,13 @@ export class TimeAgoPipe implements PipeTransform {
     }
 
     return 'Just now';
+  }
+  */
+
+  // Solución con la libreria date-fns
+  transform(value: string): string {
+    // return formatDistance(new Date(value), new Date());
+    return formatDistanceToNow(new Date(value), { addSuffix: true }); // agrega el 'ago' o 'from now' o 'in x'
   }
 
 }
