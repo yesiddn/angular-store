@@ -82,3 +82,26 @@ Generalmente se usan para transformar datos en la vista usando el pipe operator 
 ```
 
 Para saber más sobre los pipes integrados de Angular, visita la [documentación oficial](https://angular.io/api?type=pipe).
+
+### Create a pipe
+
+```bash
+ng generate pipe domains/shared/pipes/reverse
+```
+
+Los pipes tienen el decorador @Pipe como un componente tiene el decorador @Component. Un pipe puro es un pipe que no tiene efectos secundarios y que siempre devuelve el mismo resultado para la misma entrada. Un pipe impuro es un pipe que tiene efectos secundarios y que puede devolver un resultado diferente para la misma entrada.
+
+```javascript
+export class TimeAgoPipe implements PipeTransform {
+
+  transform(value: unknown, ...args: unknown[]): unknown {
+    return null;
+  }
+
+}
+```
+
+`transform` es el método que se ejecuta cuando se usa el pipe en la vista. Recibe un valor y argumentos y devuelve un valor transformado.
+
+Para usar el pipe en la vista, se debe importar el pipe en el módulo donde se va a usar y agregarlo a la lista de declaraciones como se hacizo con el pipe de currency.
+Cabe aclarar que los pipes de Angular ya vienen en el CommonModule, pero si no se ha importado el CommonModule en el módulo donde se va a usar el pipe, se puede importar el pipe por separado.
