@@ -113,3 +113,45 @@ ng generate directive domains/shared/directives/highlight
 ```
 
 Las directivas son clases que se usan para manipular el DOM. Angular tiene varias directivas integradas como el NgIf, NgFor, NgClass, etc. También se pueden crear directivas personalizadas.
+
+## Layout or nested views
+
+Se crea un componente como si fuese un componente normal.
+
+```bash
+ng g c domains/shared/components/layout
+```
+
+La unica diferencia es que en `layout.component.html` se debe agregar un `<router-outlet />` para que los componentes hijos se rendericen en ese lugar.
+
+```html
+<div class="container mx-auto">
+  <app-header />
+  <router-outlet />
+</div>
+```
+
+Y en `app.routes.ts` se debe agregar el componente como si fuese una ruta normal, pero además se debe agregar la propiedad `children` con las rutas hijas que vayan necesitar el layout.
+
+```javascript
+export const routes: Routes = [
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [
+      {
+        path: '',
+        component: ListComponent
+      },
+      {
+        path: 'about',
+        component: AboutComponent
+      },
+    ]
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
+  }
+];
+```
