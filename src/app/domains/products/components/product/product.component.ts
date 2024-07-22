@@ -1,11 +1,12 @@
 import { Component, EventEmitter, input, Input, Output } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { Product } from '../../../shared/models/product.mode';
+import { RouterLinkWithHref } from '@angular/router';
 
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, RouterLinkWithHref],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
