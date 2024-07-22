@@ -105,3 +105,11 @@ export class TimeAgoPipe implements PipeTransform {
 
 Para usar el pipe en la vista, se debe importar el pipe en el módulo donde se va a usar y agregarlo a la lista de declaraciones como se hacizo con el pipe de currency.
 Cabe aclarar que los pipes de Angular ya vienen en el CommonModule, pero si no se ha importado el CommonModule en el módulo donde se va a usar el pipe, se puede importar el pipe por separado.
+
+## Directives
+
+```bash
+ng generate directive domains/shared/directives/highlight
+```
+
+Las directivas son clases que se usan para manipular el DOM. Angular tiene varias directivas integradas como el NgIf, NgFor, NgClass, etc. También se pueden crear directivas personalizadas.
