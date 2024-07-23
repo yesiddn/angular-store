@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, Input, signal } from '@angular/core';
 import { Product } from '@shared/models/product.mode';
+import { CartService } from '@shared/services/cart.service';
 import { ProductService } from '@shared/services/product.service';
 
 @Component({
@@ -15,6 +16,7 @@ export class ProductDetailComponent {
   product = signal<Product | null>(null);
   cover = signal('');
   private productService = inject(ProductService);
+  private cartService = inject(CartService);
 
   ngOnInit() {
     if (this.id) {
@@ -24,6 +26,8 @@ export class ProductDetailComponent {
           if (product.images.length > 0) {
             this.cover.set(product.images[0]);
           }
+          product.images.push('https://picsum.photos/680/640');
+          product.images.push('https://www.whitmorerarebooks.com/pictures/medium/2465.jpg');
         },
       });
     }
@@ -31,5 +35,13 @@ export class ProductDetailComponent {
 
   changeCover(newImage: string) {
     this.cover.set(newImage);
+  }
+
+  addToCart() {
+    const product = this.product();
+
+    if (product) {
+      this.cartService.addProduct(product);
+    }
   }
 }
