@@ -6,6 +6,8 @@ import { HeaderComponent } from '@shared/components/header/header.component';
 import { CartService } from '@shared/services/cart.service';
 import { ProductService } from '@shared/services/product.service';
 import { TimeAgoPipe } from '@shared/pipes/time-ago.pipe';
+import { CategoryService } from '@shared/services/category.service';
+import { Category } from '@shared/models/category.model';
 
 @Component({
   selector: 'app-list',
@@ -16,9 +18,11 @@ import { TimeAgoPipe } from '@shared/pipes/time-ago.pipe';
 })
 export class ListComponent {
   products = signal<Product[]>([]);
+  categories = signal<Category[]>([]);
   // cart = signal<Product[]>([]);
   private cartService = inject(CartService);
   private productService = inject(ProductService);
+  private categoryService = inject(CategoryService);
 
   // constructor() {
   //   const initProducts: Product[] = [
@@ -54,6 +58,17 @@ export class ListComponent {
   // }
 
   ngOnInit() {
+    this.getProducts();
+    this.getCategories();
+  }
+
+  addToCart(product: Product) {
+    // this.cart.update(prevState => [...prevState, product]);
+    this.cartService.addProduct(product);
+    console.log(this.products());
+  }
+
+  private getProducts() {
     this.productService.getProducts().subscribe({
       next: (products) => {
         this.products.set(products);
@@ -64,9 +79,14 @@ export class ListComponent {
     });
   }
 
-  addToCart(product: Product) {
-    // this.cart.update(prevState => [...prevState, product]);
-    this.cartService.addProduct(product);
-    console.log(this.products());
+  private getCategories() {
+    this.categoryService.getAll().subscribe({
+      next: (categories) => {
+        this.categories.set(categories);
+      },
+      error: (error) => {
+        console.error('Error:', error);
+      },
+    });
   }
 }
