@@ -213,3 +213,23 @@ providers: [
   provideHttpClient()
 ]
 ```
+
+## Migration to Angular new syntax
+
+```bash
+ng g @angular/core:control-flow
+```
+
+Mostrará la opción de seleccionar la carpeta que se quiere migrar. Se dará enter para seleccionar el proyecto completo.
+
+```bash
+? Which path in your project should be migrated? ./
+```
+
+Luego, preguntará si se quiere formatear el código de los templates.
+
+```bash
+? Should the migration reformat your templates? no
+```
+
+> Por lo general, se debe seleccionar `no` para que no se formatee el código de los templates.
