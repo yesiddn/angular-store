@@ -155,3 +155,19 @@ export const routes: Routes = [
   }
 ];
 ```
+
+## Lazy loading y code splitting
+
+Lazy loading es una técnica que se usa para cargar módulos de forma asíncrona. Se usa para mejorar el rendimiento de la aplicación y para reducir el tiempo de carga inicial. Se puede usar para cargar módulos enteros o componentes específicos.
+Nos conviene que en la primera carga de la página al usuario, no descarguemos todo el peso de nuestra app completa.
+
+Con el code splitting, podemos dividir nuestra app en varios paquetes o chunks y cargar solo los paquetes que necesitamos.
+
+### BENEFICIOS
+
+- Ya no descargamos la app completa, sino solo lo necesario a la ruta
+- La mayoría de usuarios no visita cada una de las rutas, ¿para qué traerlas todas?
+- Reducimos considerablemente el tiempo de carga de nuestra app, dependiendo el tamaño de nuestra página
+- Por otro lado, también favorece el lado de seguridad. Por ejemplo:
+Si contamos con una ruta /admin, al que solo pueden ingresar usuarios con el rol de Supervisor, ¿estaría bien si la ruta /admin les cargue a todos así no puedan ingresar?
+Utilizando el lazy loading, evitamos que tampoco te carguen rutas de las que no deberías tener conocimiento
