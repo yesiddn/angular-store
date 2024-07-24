@@ -199,3 +199,17 @@ Ya con esto se puede usar el `import` directamente en la propiedad `loadComponen
   loadComponent: () => import('./domains/products/pages/list/list.component')
 },
 ```
+
+## Prefetching
+
+Prefetching es una técnica que se usa para cargar recursos antes de que el usuario los necesite. Se usa para mejorar el rendimiento de la aplicación y para reducir el tiempo de carga de las rutas.
+
+Para usar prefetching en Angular, se debe activar en el archivo `app.config.ts`. Del modulo `@angular/router` se debe importar `withPreloading` y `PreloadAllModules` y agregar `withPreloading(PreloadAllModules)` en la función `provideRouter()`.
+
+```javascript
+providers: [
+  provideZoneChangeDetection({ eventCoalescing: true }),
+  provideRouter(routes, withComponentInputBinding(), withPreloading(PreloadAllModules)),
+  provideHttpClient()
+]
+```
