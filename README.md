@@ -171,3 +171,31 @@ Con el code splitting, podemos dividir nuestra app en varios paquetes o chunks y
 - Por otro lado, también favorece el lado de seguridad. Por ejemplo:
 Si contamos con una ruta /admin, al que solo pueden ingresar usuarios con el rol de Supervisor, ¿estaría bien si la ruta /admin les cargue a todos así no puedan ingresar?
 Utilizando el lazy loading, evitamos que tampoco te carguen rutas de las que no deberías tener conocimiento
+
+### Aplicando lazy loading
+
+En el archivo `app.routes.ts` se debe importar el módulo que se va a cargar de forma asíncrona usando la propiedad `loadComponet` en lugar de `component`.
+
+```javascript
+{
+  path: '',
+  loadComponent: () => import('./domains/products/pages/list/list.component').then(m => m.ListComponent)
+},
+```
+
+`loadComponent` ahora recibe una funcion que por medio de `import` carga el módulo de forma asíncrona por lo que al ser una promesa, se debe usar `then` para obtener el módulo.
+
+Para no tener que usar el `then` en cada ruta, en el modulo que se quiere cargar de forma asíncrona se debe agregar el `default` en la exportación del módulo.
+
+```javascript
+export default class ListComponent {}
+```
+
+Ya con esto se puede usar el `import` directamente en la propiedad `loadComponent`.
+
+```javascript
+{
+  path: '',
+  loadComponent: () => import('./domains/products/pages/list/list.component')
+},
+```
